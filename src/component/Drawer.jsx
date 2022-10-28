@@ -28,7 +28,6 @@ import {
 } from '@mui/icons-material'
 // import MenuIcon from '@mui/icons-material/Menu'
 
-import { lists } from '../../public/dummy/dummy'
 
 let dateNew = new Date()
 let date1 = dateNew.toLocaleTimeString()

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from "react";
-import _uniqueId from "lodash/uniqueId"; //To create unique ID for array key
+import React, { useState, useRef, Suspense } from "react";
 
 import {
   Cylinder,
@@ -13,58 +12,39 @@ import {
   usePreload,
   useWindowSize,
   World,
-  Joystick,
   LingoEditor,
-  HTMLMesh,
-  Water,
-  Cube,
-  HTML,
   UI,
-  SkyLight,
-  Trigger,
-  Sphere,
-  AmbientLight,
   Find,
   AreaLight,
   Reflector,
   SpotLight,
+  PointLight,
 } from "lingo3d-react";
 
-// Basiir comment
-// import { io } from 'socket.io-client'
-
-import { Button, CssBaseline, CircularProgress } from "@mui/material";
-// import TouchAppTwoToneIcon from '@mui/icons-material/TouchAppTwoTone'
+import { Stack } from "@mui/material";
+import { panelObj } from "../../public/dummy/dummy";
 
 import ResponsiveDrawer from "../component/Drawer";
-// import { serverPlayerOnly, textLimit } from '../helper'
-import { panelFrame, panelObj } from "../../public/dummy/dummy";
-
-const viteBaseUrl = import.meta.env.VITE_BASE_URL;
 
 const Game = () => {
   const progress = usePreload(
     [
-      `${viteBaseUrl}/maps/v2/map.glb`,
-      `${viteBaseUrl}/3dCharacter/new/character.fbx`,
-      `${viteBaseUrl}/3dCharacter/new/BreathingIdle.fbx`,
-      `${viteBaseUrl}/3dCharacter/new/Running.fbx`,
-      `${viteBaseUrl}/skyBox/sky.jpg`,
+      `maps/v2/new/map.gltf`,
+      `3dCharacter/new/character.fbx`,
+      `3dCharacter/new/BreathingIdle.fbx`,
+      `3dCharacter/new/Running.fbx`,
     ],
-    15555900
+    455559000
   );
 
   //Basiir
   const [running, setRunning] = useState(false);
   const [arrowPosition, setArrowPosition] = useState({ x: 0, y: 0, z: 0 });
-  const [idTv] = useState(_uniqueId("tvkey-"));
-  const [idpf] = useState(_uniqueId("pfkey-"));
-  const [idrpf] = useState(_uniqueId("rpfkey-"));
+  const [isVisible, setVisible] = useState({ state: false, name: "" });
 
   //PLAYER
   const dummyRef = useRef(null);
   const textRef = useRef(null);
-
   const remoteRef = useRef(null);
   const boothRef = useRef(null);
 
@@ -92,7 +72,7 @@ const Game = () => {
     };
   };
 
-  const movePlayer = (ev) => {
+  const movePlayer = (ev, id) => {
     // const { id } = socket
     const dummy = dummyRef.current;
     const textName = textRef.current;
@@ -106,11 +86,11 @@ const Game = () => {
     textName?.moveTo(ev.point.x + 100, undefined, ev.point.z + 100, 10);
 
     setArrowPosition(ev.point);
-
     setRunning(true);
 
     dummy.onMoveToEnd = () => {
       setRunning(false);
+      setVisible({ state: true, name: id })
     };
   };
 
@@ -122,36 +102,38 @@ const Game = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100%",
+            height: "100vh",
             textAlign: "center",
             backgroundColor: "black",
             color: "white",
           }}
         >
-          {/* {`${Math.round(progress)}% `} */}
 
-          <img src={`${viteBaseUrl}/preloader/preloader.gif`} />
-          <br />
-          {/* <CircularProgress variant="determinate" value={progress} /> */}
-          {/* loading... */}
+
+          <Stack direction={"column"}>
+            <img src={`preloader/preloader.gif`} />
+            {`${Math.round(progress)}% `}
+          </Stack>
         </div>
       )}
+
+
 
       {progress == 100 && (
         <>
           <World>
             {/* <LingoEditor /> */}
             {/* <Environment /> */}
-            <UI>{/* <ResponsiveDrawer /> */}</UI>
+            <UI>
+              <ResponsiveDrawer />
+            </UI>
 
             <Suspense fallback={null}>
               <Setup
-                // bloom
-                // motionBlur
                 pbr
-                // bloomStrength={0.4}
                 defaultLight={true}
                 pixelRatio={5}
+                exposure={2}
               />
             </Suspense>
 
@@ -213,41 +195,52 @@ const Game = () => {
               onClick={(ev) => {
                 handleClick(ev);
               }}
-              src={`${viteBaseUrl}/maps/v2/map.gltf`}
+              src={`maps/v2/new/map.gltf`}
             >
-              <PanelScreen />
-              {panelObj?.map((item, idTv) => {
+
+              <Find bloom={true} name="Line001" color="#ffffff" />
+              <Find bloom={true} name="Box050" color="#ffffff" />
+              <Find bloom={true} name="Box057" color="#ffffff" />
+              <Find bloom={true} name="Box050" color="#ffffff" />
+              <Find bloom={true} name="Box057" color="#ffffff" />
+              <Find bloom={true} name="Object872" color="#ffffff" />
+              <Find bloom={true} name="side light007" color="#ffffff" />
+              <Find bloom={true} name="ceiling light.006" color="#ffffff" />
+              <Find bloom={true} name="side wall lighting" color="#ffffff" />
+
+              {panelObj?.map((item, key) => {
                 return (
                   <>
                     <Find
-                      key={idTv}
+                      key={key}
                       name={item?.name}
-                      bloom={item?.bloom}
-                      // texture={item?.texture}
-                      texture={`${viteBaseUrl}/${item?.texture}`}
-                      textureFlipY={item?.textureFlipY}
-                      textureRotation={item?.textureRotation}
-                      // videoTexture={`${viteBaseUrl}${item?.videoTexture}`}
+                      // bloom={item?.bloom}
+
+                      rotationY={item?.rotationY}
+
+                      texture={isVisible?.state == false ? `${item?.texture}` : `${item?.texture}`}
+
+                      textureFlipY={isVisible?.state == true && isVisible?.name == item?.name ? item?.textureFlipY : false}
+                      videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
+                      textureRotation={isVisible?.state == true && isVisible?.name == item?.name ? item?.textureRotation : null}
+
+                      receiveShadow={false}
+                      metalness={-1.00}
+
                       color={item?.color}
-                      emissiveColor="#626262"
-                      emissiveIntensity={0.3}
+                      emissiveColor="#ffffff"
+                      emissiveIntensity={0.1}
                       onClick={(e) => {
-                        movePlayer(e);
+                        movePlayer(e, item?.name);
                       }}
+
                     />
+
                   </>
                 );
               })}
-              <Find bloom name="Line001" color="#ffffff" />
-              <Find bloom name="Box050" color="#ffffff" />
-              <Find bloom name="Box057" color="#ffffff" />
-              <Find bloom name="ceilinglight" color="#ffffff" />
-              <Find bloom name="Box050" color="#ffffff" />
-              <Find bloom name="Box057" color="#ffffff" />
-              <Find bloom name="Box058" color="#ffffff" />
-              {panelFrame?.map((item, idpf) => {
-                <Find key={idpf} bloom name={item?.name} color="#ffffff" />;
-              })}
+
+
             </Model>
 
             <ThirdPersonCamera
@@ -276,82 +269,84 @@ const Game = () => {
                 rotationX={180}
                 rotationY={-22.37}
                 rotationZ={180}
-                src={`${viteBaseUrl}/3dCharacter/new/character.fbx`}
+                src={`3dCharacter/new/character.fbx`}
                 animation={running ? "running" : "idle"}
                 animations={{
-                  idle: `${viteBaseUrl}/3dCharacter/new/BreathingIdle.fbx`,
-                  running: `${viteBaseUrl}/3dCharacter/new/Running.fbx`,
+                  idle: `3dCharacter/new/BreathingIdle.fbx`,
+                  running: `3dCharacter/new/Running.fbx`,
                 }}
               />
             </ThirdPersonCamera>
 
-            {running && (
-              <>
-                <Group>
-                  <Torus
-                    x={arrowPosition.x}
-                    y={arrowPosition.y + 10}
-                    z={arrowPosition.z}
-                    height={100}
-                    depth={100}
-                    width={72.99}
-                    emissiveColor="#ff0000"
-                    color="#ff4e4e"
-                    rotationX={90}
-                    animation={{
-                      scale: [0, 1, 1, 0],
-                    }}
-                    scaleX={0.21}
-                    scaleY={0.24}
-                    scaleZ={0.13}
-                    normalScale={{ x: 1, y: 1 }}
-                  />
-                  <Torus
-                    x={arrowPosition.x}
-                    y={arrowPosition.y + 10}
-                    z={arrowPosition.z}
-                    height={100}
-                    depth={100}
-                    width={72.99}
-                    emissiveColor="#ff0000"
-                    color="#ff4e4e"
-                    rotationX={90}
-                    animation={{
-                      scale: [0, 1, 1, 0],
-                    }}
-                    scaleX={0.5}
-                    scaleY={0.5}
-                    scaleZ={1.64}
-                    normalScale={{ x: 1, y: 1 }}
-                  />
-                  <Cylinder
-                    bloom
-                    x={arrowPosition.x}
-                    y={arrowPosition.y + 10}
-                    z={arrowPosition.z}
-                    height={200}
-                    width={72.99}
-                    depth={100}
-                    emissiveColor="#ff0000"
-                    color="#ff4e4e"
-                    animation={{
-                      scale: [0, 0.09, 0.05, 0],
-                    }}
-                    scaleX={0.02}
-                    scaleY={0.46}
-                    scaleZ={0.03}
-                    normalScale={{ x: 1, y: 1 }}
-                  />
-                </Group>
-              </>
-            )}
+            {
+              running && (
+                <>
+                  <Group>
+                    <Torus
+                      bloom
+                      x={arrowPosition.x}
+                      y={arrowPosition.y + 10}
+                      z={arrowPosition.z}
+                      height={100}
+                      depth={100}
+                      width={72.99}
+                      emissiveColor="#ff0000"
+                      color="#ff4e4e"
+                      rotationX={90}
+                      animation={{
+                        scale: [0, 1, 1, 0],
+                      }}
+                      scaleX={0.21}
+                      scaleY={0.24}
+                      scaleZ={0.13}
+                      normalScale={{ x: 1, y: 1 }}
+                    />
+                    <Torus
+                      bloom
+                      x={arrowPosition.x}
+                      y={arrowPosition.y + 10}
+                      z={arrowPosition.z}
+                      height={100}
+                      depth={100}
+                      width={72.99}
+                      emissiveColor="#ff0000"
+                      color="#ff4e4e"
+                      rotationX={90}
+                      animation={{
+                        scale: [0, 1, 1, 0],
+                      }}
+                      scaleX={0.5}
+                      scaleY={0.5}
+                      scaleZ={1.64}
+                      normalScale={{ x: 1, y: 1 }}
+                    />
+                    <Cylinder
+                      bloom
+                      x={arrowPosition.x}
+                      y={arrowPosition.y + 10}
+                      z={arrowPosition.z}
+                      height={200}
+                      width={72.99}
+                      depth={100}
+                      emissiveColor="#ff0000"
+                      color="#ff4e4e"
+                      animation={{
+                        scale: [0, 0.09, 0.05, 0],
+                      }}
+                      scaleX={0.02}
+                      scaleY={0.46}
+                      scaleZ={0.03}
+                      normalScale={{ x: 1, y: 1 }}
+                    />
+                  </Group>
+                </>
+              )
+            }
 
-            {panelFrame?.map((item, idrpf) => {
-              <Find key={idrpf} name={item?.name} color="#ffffff" />;
-            })}
           </World>
         </>
-      )}
+      )
+      }
     </>
   );
 };
