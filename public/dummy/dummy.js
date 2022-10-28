@@ -84,7 +84,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
     videoTexture:
       "video/2.VirtualPhDOpenHouse,bySingaporeManagementUniversity.mp4",
   },
@@ -106,7 +106,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
     videoTexture: "video/4.BYDVirtualCarShowroom,bySTEngineering.mp4",
   },
   {
@@ -127,7 +127,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
     videoTexture: "video/6.EnvironmentalAwarenessCampaign,byProcter&Gamble.mp4",
   },
   {
@@ -148,7 +148,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
     videoTexture: "video/8.SabahVirtualTravelFair,bySabahTourismBoard.mp4",
   },
   {
@@ -169,7 +169,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
     videoTexture: "video/10.VirtualSalesLobbybydr.MCTbyKevolve.mp4",
   },
   {
@@ -190,7 +190,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
 
     videoTexture: "video/12.EdenVirtualWorld,EdenlogyPteLtd.mp4",
   },
@@ -213,7 +213,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
 
     videoTexture: "video/14.VirtualAngelicaShowUnite-Launching,byJohorLand.mp4",
   },
@@ -236,7 +236,7 @@ const panelObj = [
     color: "#ffffff",
     rotationY: 19.97,
     textureRotation: 180,
-    texture: "img/test.png",
+    texture: "img/testr.png",
 
     videoTexture: "video/16.VirtualBazaar(Localised),ByTheRefectory.mp4",
   },
