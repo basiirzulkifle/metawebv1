@@ -99,7 +99,7 @@ const SubDrawer = () => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../everything`)
+                                navigate(`../portfolio`)
                             }}
                             sx={{ pl: 4 }}
                         >

@@ -19,6 +19,8 @@ import {
   PointLight,
   Water,
   SpawnPoint,
+  Reticle,
+  Joystick,
 } from "lingo3d-react";
 
 import { Button, Stack, Zoom } from "@mui/material";
@@ -44,6 +46,7 @@ const Game = () => {
   const [running, setRunning] = useState(false);
   const [arrowPosition, setArrowPosition] = useState({ x: 0, y: 0, z: 0 });
   const [isVisible, setVisible] = useState({ state: false, name: "" });
+  const [strideMode, setStrideMode] = useState("aim")
 
   //PLAYER
   const dummyRef = useRef(null);
@@ -139,11 +142,10 @@ const Game = () => {
 
       {isGame && <>
         <ResponsiveDrawer />
-
-
         <World
           repulsion={5}
-          defaultLight={false} skybox="sky.jpg"
+          // defaultLight={false} 
+          skybox="sky.jpg"
         >
           {/* <Stats /> */}
           {/* <LingoEditor /> */}
@@ -154,7 +156,7 @@ const Game = () => {
             pbr
             defaultLight={false}
             pixelRatio={5}
-            exposure={2}
+            exposure={1}
           />
 
           <Suspense fallback={null}>
@@ -162,22 +164,6 @@ const Game = () => {
           </Suspense>
 
           <Suspense fallback={null}>
-            {/* <Model
-              name="worldmap"
-              physics="map"
-              ref={boothRef}
-              width={245.36}
-              depth={245.36}
-              x={-149.17}
-              y={1494.28}
-              z={-1113.66}
-              scale={300}
-              onClick={(ev) => {
-                handleClick(ev);
-              }}
-              src={`maps/v2/new/new/grassland.gltf`}
-            > */}
-
             <Model
               name="worldmap"
               physics="map"
@@ -214,13 +200,13 @@ const Game = () => {
                   scaleX={item?.scaleX}
                   scaleY={item?.scaleY}
 
-                  aoMapIntensity={1.5}
+                  aoMapIntensity={2.5}
 
                   lightMap={'img/test.png'}
-                  lightMapIntensity={2}
+                  lightMapIntensity={3}
                   texture={item?.texture}
 
-                  // videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
+                  videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
 
                   onClick={(e) => {
                     movePlayer(e, item?.name);
@@ -252,6 +238,8 @@ const Game = () => {
               <Dummy
                 reflection
                 ref={dummyRef}
+                // strideMove
+                // strideMode={strideMode}
                 id="player"
                 name="player"
                 physics="character"
@@ -340,13 +328,31 @@ const Game = () => {
             )
           }
 
+          {/* <Reticle />
+          <Joystick
+            onMove={(e) => {
+              const dummy = dummyRef.current;
+              if (!dummy) return;
+
+              dummy.strideForward = -e.y * 5;
+              dummy.strideRight = -e.x * 5;
+            }}
+            onMoveEnd={() => {
+              const dummy = dummyRef.current;
+              if (!dummy) return;
+
+              dummy.strideForward = 0;
+              dummy.strideRight = 0;
+            }}
+          /> */}
+
           <SpawnPoint x={110.32} y={-251.26} z={-1479.18} scale={5} />
 
-          <PointLight name="fireLamp" x={-54.54} y={-230.87} z={-2877.70} />
-          <PointLight name="lampStreet1" x={31.53} y={-97.85} z={-829.20} />
-          <PointLight name="lampStreet2" x={283.20} y={-233.84} z={-1669.20} />
-          <PointLight name="lampStreet3" x={995.55} y={98.09} z={-2184.01} intensity={2.00} />
-          <PointLight name="lampMan" x={470.85} y={95.59} z={-311.03} intensity={1.50} />
+          <PointLight name="fireLamp" x={-54.54} y={-230.87} z={-2877.70} intensity={3} />
+          <PointLight name="lampStreet1" x={31.53} y={-97.85} z={-829.20} intensity={3} />
+          <PointLight name="lampStreet2" x={283.20} y={-233.84} z={-1669.20} intensity={3} />
+          <PointLight name="lampStreet3" x={995.55} y={98.09} z={-2184.01} intensity={3.00} />
+          <PointLight name="lampMan" x={470.85} y={95.59} z={-311.03} intensity={3} />
           {/* <Water name="water" x={-1687.26} y={-390.14} z={-2294.46} scale={25.00} scaleX={30.00} scaleZ={25.00} scaleY={77.94} speed={0.1} resolution={2048} rotationX={270.00} /> */}
 
         </World>

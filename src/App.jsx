@@ -26,7 +26,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Game />} />
                         <Route
-                            path="everything"
+                            path="portfolio"
                             element={
                                 <Nomenu
                                     url={'https://360xp.co/ismartwebsite/'}

@@ -15,7 +15,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={1.00}
+                intensity={2.00}
                 color="#ffbd46"
             />
             <AreaLight
@@ -29,7 +29,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={1.00}
+                intensity={2.00}
                 color="#ffbd46"
             />
             <AreaLight
@@ -43,7 +43,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={1.00}
+                intensity={2.00}
                 color="#ffbd46"
             />
             <AreaLight
@@ -57,7 +57,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={1.00}
+                intensity={2.00}
                 color="#ffbd46"
             />
 
