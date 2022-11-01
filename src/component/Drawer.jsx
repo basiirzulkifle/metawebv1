@@ -122,7 +122,7 @@ const SubDrawer = () => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#softwaredev_section`)
+                                navigate(`../services/softwaredev_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -130,7 +130,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#ecommerce_section`)
+                                navigate(`../services/ecommerce_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -138,7 +138,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#websitedesign_section`)
+                                navigate(`../services/websitedesign_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -146,7 +146,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#webminigame_section`)
+                                navigate(`../services/webminigame_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -154,7 +154,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#virtualevent_section`)
+                                navigate(`../services/virtualevent_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -162,7 +162,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#onlineshowroom_section`)
+                                navigate(`../services/onlineshowroom_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -170,7 +170,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#3dvisualization_section`)
+                                navigate(`../services/3dvisualization_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -178,7 +178,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services#metaverse_section`)
+                                navigate(`../services/metaverse_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -281,18 +281,19 @@ function ResponsiveDrawer(props) {
                 }}
             >
                 <Toolbar>
+
+                    <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+                        iSmart Support
+                    </Typography>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        edge="start"
+                        edge="end"
                         onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { sm: 'none' } }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        iSmart Support
-                    </Typography>
                 </Toolbar>
             </AppBar>
             <Box

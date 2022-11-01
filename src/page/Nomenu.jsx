@@ -24,8 +24,8 @@ const Nomenu = ({ url }) => {
             <iframe
                 style={{
                     display: 'block',
-                    width: '-webkit-fill-available',
-                    height: '-webkit-fill-available ',
+                    width: '100%',
+                    height: '100%',
                     border: '0px',
                     backgroundColor: 'black',
                     position: " absolute",
