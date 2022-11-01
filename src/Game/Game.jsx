@@ -16,11 +16,7 @@ import {
   Stats,
   useWindowSize,
   Plane,
-  PointLight,
-  Water,
-  SpawnPoint,
-  Reticle,
-  Joystick,
+  Cube,
 } from "lingo3d-react";
 
 import { Button, Stack, Zoom } from "@mui/material";
@@ -33,10 +29,10 @@ import LightWall from "./LightWall";
 const Game = () => {
   const progress = usePreload(
     [
-      `maps/v2/new/new/Grassland.glb`,
-      `3dCharacter/new/character.gltf`,
-      `3dCharacter/new/BreathingIdle.fbx`,
-      `3dCharacter/new/Running.fbx`,
+      `maps/v2/Grassland.glb`,
+      `3dCharacter/character.glb`,
+      `3dCharacter/BreathingIdle.fbx`,
+      `3dCharacter/Running.fbx`,
     ],
     '2mb'
   );
@@ -118,7 +114,7 @@ const Game = () => {
             </>
           )}
 
-          {progress == 100 && (
+          {/* {progress == 100 && (
             <>
               <Zoom in={true}>
                 <Button onClick={() => handleGame()} sx={{
@@ -133,15 +129,15 @@ const Game = () => {
 
               </Zoom>
             </>
-          )}
+          )} */}
 
         </Stack>
 
       </div>
 
 
-      {isGame && <>
-        <ResponsiveDrawer />
+      {progress == 100 && <>
+
         <World
           repulsion={5}
           // defaultLight={false} 
@@ -150,8 +146,6 @@ const Game = () => {
           {/* <Stats /> */}
           {/* <LingoEditor /> */}
 
-
-
           <Setup
             pbr
             defaultLight={false}
@@ -159,9 +153,7 @@ const Game = () => {
             exposure={1}
           />
 
-          <Suspense fallback={null}>
-            <LightWall />
-          </Suspense>
+          <Cube visible={false} physics="map" x={87.91} y={-258.86} z={-1496.74} scale={-2.68} scaleX={5.56} scaleY={0.04} scaleZ={5.58} rotationX={-5.69} rotationZ={-179.00} />
 
           <Suspense fallback={null}>
             <Model
@@ -177,7 +169,7 @@ const Game = () => {
               onClick={(ev) => {
                 handleClick(ev);
               }}
-              src={`maps/v2/new/new/Grassland.glb`}
+              src={`maps/v2/Grassland.glb`}
             >
             </Model>
           </Suspense>
@@ -186,6 +178,8 @@ const Game = () => {
             return (
               <>
                 <Plane
+                  // physics="map"
+                  // bloom
                   key={key}
                   name={item?.name}
 
@@ -202,11 +196,12 @@ const Game = () => {
 
                   aoMapIntensity={2.5}
 
-                  lightMap={'img/test.png'}
-                  lightMapIntensity={3}
-                  texture={item?.texture}
-
                   videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
+                  texture={isVisible?.state == false && isVisible?.name == item?.name ? `${item?.texture}` : `${item?.texture}`}
+
+                  lightMapIntensity={4}
+                  lightMap={isVisible?.state == false && isVisible?.name == item?.name ? `${item?.texture}` : `${item?.texture}`}
+
 
                   onClick={(e) => {
                     movePlayer(e, item?.name);
@@ -217,54 +212,58 @@ const Game = () => {
             );
           })}
 
-
-          <ThirdPersonCamera
-            enableDamping
-            active={true}
-            mouseControl={"drag"}
-            lockTargetRotation={false}
-            fov={fov}
-            y={50}
-            innerY={20.00}
-            zoom={1}
-            // transition
-            azimuthAngle={100}
-            polarAngle={130}
-            minPolarAngle={100}
-            maxPolarAngle={130}
-          >
+          {isGame ? (<>
 
             <Suspense fallback={null}>
-              <Dummy
-                reflection
-                ref={dummyRef}
-                // strideMove
-                // strideMode={strideMode}
-                id="player"
-                name="player"
-                physics="character"
-                width={50}
-                depth={50}
-                scale={1}
-                x={112.02}
-                y={-195.86}
-                z={-1479.61}
-                rotationX={180}
-                rotationY={-22.37}
-                rotationZ={180}
-                src={`3dCharacter/new/character.gltf`}
-                animation={running ? "running" : "idle"}
-                animations={{
-                  idle: `3dCharacter/new/BreathingIdle.fbx`,
-                  running: `3dCharacter/new/Running.fbx`,
-                }}
-              />
+              <LightWall />
             </Suspense>
 
-          </ThirdPersonCamera>
+            <ThirdPersonCamera
+              enableDamping
+              active={true}
+              mouseControl={"drag"}
+              lockTargetRotation={false}
+              fov={fov}
+              y={50}
+              innerY={20.00}
+              zoom={1}
+              // transition
+              azimuthAngle={100}
+              polarAngle={130}
+              minPolarAngle={100}
+              maxPolarAngle={130}
+            >
 
-          {
-            running && (
+              <Suspense fallback={null}>
+                <Dummy
+                  reflection
+                  ref={dummyRef}
+                  // strideMove
+                  // strideMode={strideMode}
+                  id="player"
+                  name="player"
+                  physics="character"
+                  width={50}
+                  depth={50}
+                  scale={1}
+                  x={112.02}
+                  y={-195.86}
+                  z={-1479.61}
+                  rotationX={180}
+                  rotationY={-22.37}
+                  rotationZ={180}
+                  src={`3dCharacter/character.glb`}
+                  animation={running ? "running" : "idle"}
+                  animations={{
+                    idle: `3dCharacter/BreathingIdle.fbx`,
+                    running: `3dCharacter/Running.fbx`,
+                  }}
+                />
+              </Suspense>
+
+            </ThirdPersonCamera>
+
+            {running && (
               <>
                 <Group>
                   <Torus
@@ -326,34 +325,29 @@ const Game = () => {
                 </Group>
               </>
             )
-          }
+            }
 
-          {/* <Reticle />
-          <Joystick
-            onMove={(e) => {
-              const dummy = dummyRef.current;
-              if (!dummy) return;
 
-              dummy.strideForward = -e.y * 5;
-              dummy.strideRight = -e.x * 5;
-            }}
-            onMoveEnd={() => {
-              const dummy = dummyRef.current;
-              if (!dummy) return;
 
-              dummy.strideForward = 0;
-              dummy.strideRight = 0;
-            }}
-          /> */}
+          </>) : (<>
+            <UI>
+              <Button onClick={() => handleGame()} sx={{
+                background: `url( ${windowSize.width < 700 ? "preloader/popMobile.png" : "preloader/popDesktop.png"})`,
+                width: "100vw",
+                height: "100vh",
+                border: '0px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundColor: "black",
+                zIndex: 10000
+              }} />
+            </UI>
+          </>)}
 
-          <SpawnPoint x={110.32} y={-251.26} z={-1479.18} scale={5} />
-
-          <PointLight name="fireLamp" x={-54.54} y={-230.87} z={-2877.70} intensity={3} />
-          <PointLight name="lampStreet1" x={31.53} y={-97.85} z={-829.20} intensity={3} />
-          <PointLight name="lampStreet2" x={283.20} y={-233.84} z={-1669.20} intensity={3} />
-          <PointLight name="lampStreet3" x={995.55} y={98.09} z={-2184.01} intensity={3.00} />
-          <PointLight name="lampMan" x={470.85} y={95.59} z={-311.03} intensity={3} />
-          {/* <Water name="water" x={-1687.26} y={-390.14} z={-2294.46} scale={25.00} scaleX={30.00} scaleZ={25.00} scaleY={77.94} speed={0.1} resolution={2048} rotationX={270.00} /> */}
+          <UI>
+            <ResponsiveDrawer />
+          </UI>
 
         </World>
       </>}

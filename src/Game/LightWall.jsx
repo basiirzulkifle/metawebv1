@@ -1,9 +1,38 @@
-import { AreaLight } from 'lingo3d-react'
+import { AreaLight, PointLight } from 'lingo3d-react'
 import React from 'react'
 
 const LightWall = () => {
     return (
         <>
+
+            <AreaLight
+                x={-5817.27}
+                y={2863.84}
+                z={329.36}
+                rotationX={-168.96}
+                rotationY={55.73}
+                rotationZ={175.14}
+                scale={118.65}
+                scaleX={141.49}
+                scaleY={20.72}
+                scaleZ={0.00}
+                intensity={1.50}
+                color="#ffbd46"
+            />
+            <AreaLight
+                x={2745.16}
+                y={2155.35}
+                z={-1297.91}
+                rotationX={-38.70}
+                rotationY={-80.07}
+                rotationZ={-34.28}
+                scale={53.24}
+                scaleX={118.65}
+                scaleY={27.49}
+                scaleZ={0.00}
+                intensity={1.50}
+                color="#ffbd46"
+            />
             <AreaLight
                 x={-3842.77}
                 y={1771.98}
@@ -15,7 +44,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={2.00}
+                intensity={1.50}
                 color="#ffbd46"
             />
             <AreaLight
@@ -29,7 +58,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={2.00}
+                intensity={1.50}
                 color="#ffbd46"
             />
             <AreaLight
@@ -43,7 +72,7 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={2.00}
+                intensity={1.50}
                 color="#ffbd46"
             />
             <AreaLight
@@ -57,40 +86,14 @@ const LightWall = () => {
                 scaleX={53.24}
                 scaleY={-22.06}
                 scaleZ={0.00}
-                intensity={2.00}
+                intensity={1.50}
                 color="#ffbd46"
             />
-
-            {/* <AreaLight
-                x={-1812.64}
-                y={-178.63}
-                z={-1473.34}
-                rotationX={89.93}
-                rotationY={51.55}
-                rotationZ={-89.36}
-                scale={94.23}
-                scaleX={94.23}
-                scaleY={7.74}
-                scaleZ={0.0}
-                // intensity={0.01}
-                color="#ffbd46"
-            />
-
-            <AreaLight
-                x={1605.44}
-                y={-178.63}
-                z={-1473.34}
-                rotationX={89.93}
-                rotationY={-51.55}
-                rotationZ={-89.36}
-                scale={94.23}
-                scaleX={94.23}
-                scaleY={7.74}
-                scaleZ={0.0}
-                // intensity={0.01}
-                color="#ffbd46"
-            /> */}
-
+            <PointLight name="fireLamp" x={-54.54} y={-230.87} z={-2877.70} intensity={3} />
+            <PointLight name="lampStreet1" x={31.53} y={-97.85} z={-829.20} intensity={3} />
+            <PointLight name="lampStreet2" x={283.20} y={-233.84} z={-1669.20} intensity={3} />
+            <PointLight name="lampStreet3" x={995.55} y={98.09} z={-2184.01} intensity={3.00} />
+            <PointLight name="lampMan" x={470.85} y={95.59} z={-311.03} intensity={3} />
         </>
     )
 }

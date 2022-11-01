@@ -78,7 +78,7 @@ const Theme = {
           backgroundColor: "transparent",
           border: "1px solid white",
           "&:hover": {
-            backgroundColor: "#ffffff3d",
+            backgroundColor: "#444444",
           },
         },
       },
