@@ -138,13 +138,17 @@ const Game = () => {
 
 
       {isGame && <>
-        <ResponsiveDrawer />
+        {/* <ResponsiveDrawer /> */}
+        
+
         <World
           repulsion={5}
           defaultLight={false} skybox="sky.jpg"
         >
           {/* <Stats /> */}
           {/* <LingoEditor /> */}
+
+
 
           <Setup
             pbr
@@ -214,9 +218,9 @@ const Game = () => {
 
                   lightMap={'img/test.png'}
                   lightMapIntensity={2}
-                  texture={'img/test.png'}
+                  texture={item?.texture}
 
-                  videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
+                  // videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
 
                   onClick={(e) => {
                     movePlayer(e, item?.name);

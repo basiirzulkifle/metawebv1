@@ -256,6 +256,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
+    texture: 'img/1SingaporeFood Festival2022,bySingaporeTourismBoard.png',
     videoTexture:
       "video/1.SingaporeFoodFestival2022,bySingaporeTourismBoard.mp4",
   },
@@ -270,6 +271,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
+    texture: 'img/2VirtualPhDOpenHouse,bySingaporeManagementUniversity.png',
     videoTexture:
       "video/7.StarPropertyAwards2022VirtualShowcase,byStarMediaGroup.mp4",
   },
@@ -284,6 +286,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
+    texture: 'img/3IloominationVirtualShowroom,by NEACleanGreen Singapore.png',
     videoTexture:
       "video/3.IloominationVirtualShowroom,byNEAClean&GreenSingapore.mp4",
   },
@@ -298,6 +301,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
+    texture: 'img/4BYDVirtualCar Showroom,bySTEngineering.png',
     videoTexture:
       "video/9.VirtualExhibition&InternationalConference,byUniversityScienceMalaysia.mp4",
   },
@@ -312,6 +316,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
+    texture: 'img/5CuriographyVirtualExhibition,bySingaporeAssociationforMentalHealth.png',
     videoTexture:
       "video/5.CuriographyVirtualExhibition,bySingaporeAssociationforMentalHealth.mp4",
   },
