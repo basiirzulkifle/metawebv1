@@ -15,12 +15,9 @@ const AudioBcg = () => {
         if (isAudio) audio?.play();
     }, [isAudio]);
 
-    console.log("isAudio", isAudio)
-
     return (
         <>
             <audio
-                // autoPlay
                 controls
                 loop
                 style={{ position: "relative", zIndex: "100", display: "none" }}
@@ -32,6 +29,7 @@ const AudioBcg = () => {
                 id="buttonAudio"
                 sx={{
                     color: "white",
+                    border: "0px"
                 }}
                 variant="text"
                 startIcon={isAudio ? <MusicOffIcon /> : <MusicNoteIcon />}

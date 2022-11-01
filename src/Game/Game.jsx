@@ -2,7 +2,6 @@ import React, { useState, useRef, Suspense } from "react";
 
 import {
   Cylinder,
-  Environment,
   Torus,
   Dummy,
   Group,
@@ -14,24 +13,25 @@ import {
   LingoEditor,
   UI,
   Find,
-  AreaLight,
   Stats,
-  useSpring,
   useWindowSize,
-  Audio,
+  Plane,
+  PointLight,
+  Water,
+  SpawnPoint,
 } from "lingo3d-react";
 
-import { Button, Stack } from "@mui/material";
-import { panelObj } from "../dummy/dummy";
+import { Button, Stack, Zoom } from "@mui/material";
+import { panelObj, panelObjHouse } from "../dummy/dummy";
 
 import ResponsiveDrawer from "../component/Drawer";
 import CircularStatic from "../component/CircularProgressWithLabel";
-import AudioBcg from "../component/AudioBcg";
+import LightWall from "./LightWall";
 
 const Game = () => {
   const progress = usePreload(
     [
-      `maps/v2/new/map.gltf`,
+      `maps/v2/new/new/Grassland.glb`,
       `3dCharacter/new/character.gltf`,
       `3dCharacter/new/BreathingIdle.fbx`,
       `3dCharacter/new/Running.fbx`,
@@ -50,7 +50,7 @@ const Game = () => {
   const boothRef = useRef(null);
   const windowSize = useWindowSize();
 
-  const fov = windowSize.width < windowSize.height ? 100 : 90;
+  const fov = windowSize.width < windowSize.height ? 90 : 90;
 
   const handleClick = (ev) => {
     const dummy = dummyRef.current;
@@ -74,8 +74,8 @@ const Game = () => {
 
     if (!dummy) return;
 
-    dummy?.lookTo(ev.point.x, undefined, ev.point.z, 0.1);
-    dummy?.moveTo(ev.point.x, undefined, ev.point.z, 8);
+    dummy?.lookTo(ev.point.x + 10, undefined, ev.point.z + 10, 0.1);
+    dummy?.moveTo(ev.point.x + 10, undefined, ev.point.z + 10, 8);
 
     setArrowPosition(ev.point);
     setRunning(true);
@@ -90,6 +90,7 @@ const Game = () => {
     setGame(true)
   }
 
+
   return (
     <>
 
@@ -102,21 +103,32 @@ const Game = () => {
           textAlign: "center",
           backgroundColor: "black",
           color: "white",
+          width: "100vw"
         }}
       >
 
-
-        <Stack direction={"column"} sx={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
           {progress < 100 && (
             <>
-              <img src={`preloader/preloader.gif`} />
+              <img alt="metasg" width={"100%"} height={"100%"} src={`preloader/preloader.gif`} />
               <CircularStatic value={progress} />
             </>
           )}
+
           {progress == 100 && (
             <>
-              <img src={`preloader/preloader.gif`} />
-              <Button variant="contained" onClick={handleGame} >Enter</Button>
+              <Zoom in={true}>
+                <Button onClick={() => handleGame()} sx={{
+                  background: `url( ${windowSize.width < 700 ? "preloader/popMobile.png" : "preloader/popDesktop.png"})`,
+                  width: "100vw",
+                  height: "100vh",
+                  border: '0px',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                }} />
+
+              </Zoom>
             </>
           )}
 
@@ -125,68 +137,28 @@ const Game = () => {
       </div>
 
 
-      {progress == 100 && isGame && <>
+      {isGame && <>
         <ResponsiveDrawer />
         <World
           repulsion={5}
+          defaultLight={false} skybox="sky.jpg"
         >
           {/* <Stats /> */}
           {/* <LingoEditor /> */}
 
           <Setup
             pbr
-            defaultLight={true}
+            defaultLight={false}
             pixelRatio={5}
             exposure={2}
           />
 
-          <AreaLight
-            x={-131.62}
-            y={52.2}
-            z={-6166.49}
-            rotationX={46.66}
-            rotationY={-0.71}
-            rotationZ={-1.48}
-            scale={94.23}
-            scaleX={34.69}
-            scaleY={2.76}
-            scaleZ={0.0}
-            // intensity={0.01}
-            color="#ffbd46"
-          />
-
-          <AreaLight
-            x={-1812.64}
-            y={-178.63}
-            z={-1473.34}
-            rotationX={89.93}
-            rotationY={51.55}
-            rotationZ={-89.36}
-            scale={94.23}
-            scaleX={94.23}
-            scaleY={7.74}
-            scaleZ={0.0}
-            // intensity={0.01}
-            color="#ffbd46"
-          />
-
-          <AreaLight
-            x={1605.44}
-            y={-178.63}
-            z={-1473.34}
-            rotationX={89.93}
-            rotationY={-51.55}
-            rotationZ={-89.36}
-            scale={94.23}
-            scaleX={94.23}
-            scaleY={7.74}
-            scaleZ={0.0}
-            // intensity={0.01}
-            color="#ffbd46"
-          />
+          <Suspense fallback={null}>
+            <LightWall />
+          </Suspense>
 
           <Suspense fallback={null}>
-            <Model
+            {/* <Model
               name="worldmap"
               physics="map"
               ref={boothRef}
@@ -195,52 +167,66 @@ const Game = () => {
               x={-149.17}
               y={1494.28}
               z={-1113.66}
-              scale={30}
+              scale={300}
               onClick={(ev) => {
                 handleClick(ev);
               }}
-              src={`maps/v2/new/map.gltf`}
+              src={`maps/v2/new/new/grassland.gltf`}
+            > */}
+
+            <Model
+              name="worldmap"
+              physics="map"
+              ref={boothRef}
+              width={245.36}
+              depth={245.36}
+              x={414.07}
+              y={240.75}
+              z={-2448.68}
+              scale={150}
+              onClick={(ev) => {
+                handleClick(ev);
+              }}
+              src={`maps/v2/new/new/Grassland.glb`}
             >
-
-              {/* <Find bloom={true} name="Line001" color="#ffffff" />
-                <Find bloom={true} name="Box050" color="#ffffff" />
-                <Find bloom={true} name="Box057" color="#ffffff" />
-                <Find bloom={true} name="Box050" color="#ffffff" />
-                <Find bloom={true} name="Box057" color="#ffffff" />
-                <Find bloom={true} name="Object872" color="#ffffff" />
-                <Find bloom={true} name="side light007" color="#ffffff" />
-                <Find bloom={true} name="ceiling light.006" color="#ffffff" />
-                <Find bloom={true} name="side wall lighting" color="#ffffff" /> */}
-
-              {panelObj?.map((item, key) => {
-                return (
-                  <>
-                    <Find
-                      key={item?.name}
-                      name={item?.name}
-
-                      texture={isVisible?.state == false ? `${item?.texture}` : `${item?.texture}`}
-                      textureFlipY={false}
-                      videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
-
-                      receiveShadow={false}
-                      metalness={-1.00}
-
-                      color={item?.color}
-                      emissiveColor="#ffffff"
-                      emissiveIntensity={0.1}
-                      onClick={(e) => {
-                        movePlayer(e, item?.name);
-                      }}
-                    />
-
-                  </>
-                );
-              })}
-
-
             </Model>
           </Suspense>
+
+          {panelObjHouse?.map((item, key) => {
+            return (
+              <>
+                <Plane
+                  key={key}
+                  name={item?.name}
+
+                  x={item?.x}
+                  y={item?.y}
+                  z={item?.z}
+
+                  rotationY={item?.rotationY}
+                  rotationX={item?.rotationX}
+
+                  scale={item?.scale}
+                  scaleX={item?.scaleX}
+                  scaleY={item?.scaleY}
+
+                  aoMapIntensity={1.5}
+
+                  lightMap={'img/test.png'}
+                  lightMapIntensity={2}
+                  texture={'img/test.png'}
+
+                  videoTexture={isVisible?.state == true && isVisible?.name == item?.name ? `${item?.videoTexture}` : null}
+
+                  onClick={(e) => {
+                    movePlayer(e, item?.name);
+                  }}
+                />
+
+              </>
+            );
+          })}
+
 
           <ThirdPersonCamera
             enableDamping
@@ -248,13 +234,19 @@ const Game = () => {
             mouseControl={"drag"}
             lockTargetRotation={false}
             fov={fov}
-            y={5}
+            y={50}
+            innerY={20.00}
             zoom={1}
+            // transition
+            azimuthAngle={100}
+            polarAngle={130}
+            minPolarAngle={100}
+            maxPolarAngle={130}
           >
 
             <Suspense fallback={null}>
               <Dummy
-
+                reflection
                 ref={dummyRef}
                 id="player"
                 name="player"
@@ -262,9 +254,9 @@ const Game = () => {
                 width={50}
                 depth={50}
                 scale={1}
-                x={-54.47}
-                z={3250.26}
-                y={50.3}
+                x={112.02}
+                y={-195.86}
+                z={-1479.61}
                 rotationX={180}
                 rotationY={-22.37}
                 rotationZ={180}
@@ -343,6 +335,15 @@ const Game = () => {
               </>
             )
           }
+
+          <SpawnPoint x={110.32} y={-251.26} z={-1479.18} scale={5} />
+
+          <PointLight name="fireLamp" x={-54.54} y={-230.87} z={-2877.70} />
+          <PointLight name="lampStreet1" x={31.53} y={-97.85} z={-829.20} />
+          <PointLight name="lampStreet2" x={283.20} y={-233.84} z={-1669.20} />
+          <PointLight name="lampStreet3" x={995.55} y={98.09} z={-2184.01} intensity={2.00} />
+          <PointLight name="lampMan" x={470.85} y={95.59} z={-311.03} intensity={1.50} />
+          {/* <Water name="water" x={-1687.26} y={-390.14} z={-2294.46} scale={25.00} scaleX={30.00} scaleZ={25.00} scaleY={77.94} speed={0.1} resolution={2048} rotationX={270.00} /> */}
 
         </World>
       </>}

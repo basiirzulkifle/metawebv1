@@ -244,6 +244,80 @@ const panelObj = [
 ];
 
 // GAME.JS
+const panelObjHouse = [
+  {
+    name: "panel1",
+    bloom: true,
+    x: 175.34,
+    y: -179.31,
+    z: -2024.63,
+    rotationX: 0,
+    rotationY: 270.0,
+    scale: 2.17,
+    scaleX: 2.17,
+    scaleY: 1.5,
+    videoTexture:
+      "video/1.SingaporeFoodFestival2022,bySingaporeTourismBoard.mp4",
+  },
+  {
+    name: "panel2",
+    bloom: true,
+    x: 806.76,
+    y: -148.03,
+    z: -1830.72,
+    rotationX: -2.37,
+    rotationY: -81.02,
+    scale: 2.17,
+    scaleX: 2.17,
+    scaleY: 1.5,
+    videoTexture:
+      "video/7.StarPropertyAwards2022VirtualShowcase,byStarMediaGroup.mp4",
+  },
+  {
+    name: "panel3",
+    bloom: true,
+    x: -363.26,
+    y: -190.16,
+    z: -2671.47,
+    rotationX: 0,
+    rotationY: 4.54,
+    scale: 2.17,
+    scaleX: 2.17,
+    scaleY: 1.5,
+    videoTexture:
+      "video/3.IloominationVirtualShowroom,byNEAClean&GreenSingapore.mp4",
+  },
+  {
+    name: "panel4",
+    bloom: true,
+    x: -109.02,
+    y: -152.85,
+    z: -3208.29,
+    rotationX: 0,
+    rotationY: 2.46,
+    scale: 2.17,
+    scaleX: 2.17,
+    scaleY: 1.5,
+    videoTexture:
+      "video/9.VirtualExhibition&InternationalConference,byUniversityScienceMalaysia.mp4",
+  },
+  {
+    name: "panel5",
+    bloom: true,
+    x: 346.06,
+    y: -157.94,
+    z: -2923.48,
+    rotationX: 0,
+    rotationY: 270.0,
+    scale: 2.17,
+    scaleX: 2.17,
+    scaleY: 1.5,
+    videoTexture:
+      "video/5.CuriographyVirtualExhibition,bySingaporeAssociationforMentalHealth.mp4",
+  },
+];
+
+// GAME.JS
 const panelFrame = [
   {
     name: "Box2131639805",
@@ -262,4 +336,4 @@ const panelFrame = [
   },
 ];
 
-export { panelObj, panelFrame, lists };
+export { panelObj, panelFrame, lists, panelObjHouse };

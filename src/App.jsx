@@ -10,9 +10,9 @@ import { CssBaseline } from '@mui/material'
 
 import Game from './Game/Game'
 import Theme from './Theme'
-import './App.css'
 import Iframe from './page/Iframe'
 import Nomenu from './page/Nomenu'
+import './App.css'
 
 function App() {
     const theme = createTheme(Theme)

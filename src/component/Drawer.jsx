@@ -187,20 +187,20 @@ const SubDrawer = () => {
                     </List>
                 </Collapse>
 
-                <ListItemButton
+                {/* <ListItemButton
                     onClick={() => {
                         navigate(`../about-us`)
                     }}
                 >
                     <ListItemText primary="3 ABOUT" />
-                </ListItemButton>
+                </ListItemButton> */}
 
                 <ListItemButton
                     onClick={() => {
                         navigate(`../contact-us`)
                     }}
                 >
-                    <ListItemText primary="4 CONTACT" />
+                    <ListItemText primary="3 CONTACT" />
                 </ListItemButton>
 
                 <ListItemButton
