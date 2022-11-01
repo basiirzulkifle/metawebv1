@@ -138,8 +138,8 @@ const Game = () => {
 
 
       {isGame && <>
-        {/* <ResponsiveDrawer /> */}
-        
+        <ResponsiveDrawer />
+
 
         <World
           repulsion={5}

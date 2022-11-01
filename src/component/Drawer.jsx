@@ -122,7 +122,7 @@ const SubDrawer = () => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#softwaredev_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -130,7 +130,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#ecommerce_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -138,7 +138,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#websitedesign_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -146,7 +146,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#webminigame_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -154,7 +154,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#virtualevent_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -162,7 +162,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#onlineshowroom_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -170,7 +170,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#3dvisualization_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -178,7 +178,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services`)
+                                navigate(`../services#metaverse_section`)
                             }}
                             sx={{ pl: 4 }}
                         >
