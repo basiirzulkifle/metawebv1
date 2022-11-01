@@ -271,7 +271,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
-    texture: 'img/2VirtualPhDOpenHouse,bySingaporeManagementUniversity.png',
+    texture: 'img/7StarPropertyAwards2022VirtualShowcase,byStarMediaGroup.png',
     videoTexture:
       "video/7.StarPropertyAwards2022VirtualShowcase,byStarMediaGroup.mp4",
   },
@@ -301,7 +301,7 @@ const panelObjHouse = [
     scale: 2.17,
     scaleX: 2.17,
     scaleY: 1.5,
-    texture: 'img/4BYDVirtualCar Showroom,bySTEngineering.png',
+    texture: 'img/9VirtualExhibition&InternationalConference,byUniversityScienceMalaysia.png',
     videoTexture:
       "video/9.VirtualExhibition&InternationalConference,byUniversityScienceMalaysia.mp4",
   },
