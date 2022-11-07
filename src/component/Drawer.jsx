@@ -122,7 +122,7 @@ const SubDrawer = () => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/softwaredev_section`)
+                                navigate(`../services/softwaredev`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -130,7 +130,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/ecommerce_section`)
+                                navigate(`../services/ecommerce`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -138,7 +138,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/websitedesign_section`)
+                                navigate(`../services/websitedesign`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -146,7 +146,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/webminigame_section`)
+                                navigate(`../services/webminigame`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -154,7 +154,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/virtualevent_section`)
+                                navigate(`../services/virtualevent`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -162,7 +162,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/onlineshowroom_section`)
+                                navigate(`../services/onlineshowroom`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -170,7 +170,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/3dvisualization_section`)
+                                navigate(`../services/3dvisualization`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -178,7 +178,7 @@ const SubDrawer = () => {
                         </ListItemButton>
                         <ListItemButton
                             onClick={() => {
-                                navigate(`../services/metaverse_section`)
+                                navigate(`../services/metaverse`)
                             }}
                             sx={{ pl: 4 }}
                         >
@@ -186,14 +186,6 @@ const SubDrawer = () => {
                         </ListItemButton>
                     </List>
                 </Collapse>
-
-                {/* <ListItemButton
-                    onClick={() => {
-                        navigate(`../about-us`)
-                    }}
-                >
-                    <ListItemText primary="3 ABOUT" />
-                </ListItemButton> */}
 
                 <ListItemButton
                     onClick={() => {
@@ -204,10 +196,10 @@ const SubDrawer = () => {
                 </ListItemButton>
 
                 <ListItemButton
-                // href={`/ services`}
+
                 >
                     <ListItemText>
-                        {/* SOUND ON / OFF */}
+
                         <AudioBcg />
                         <br />
                         {`SINGAPORE SGT ${date1}`}
@@ -231,25 +223,6 @@ const SubDrawer = () => {
             </List>
 
             <Divider />
-
-            {/* <List
-            >
-                {submenu?.map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemText sx={{ color: 'white', pl: 0 }} inset primary={<>
-                                <Typography
-                                    sx={{ display: 'inline' }}
-                                    component="span"
-                                    variant="body2"
-                                >
-                                    {text}
-                                </Typography>
-                            </>} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List> */}
         </>
     )
 }

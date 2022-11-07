@@ -8,11 +8,12 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
 
-import Game from './Game/Game'
+import World from './Game/World'
 import Theme from './Theme'
 import Iframe from './page/Iframe'
 import Nomenu from './page/Nomenu'
 import './App.css'
+import Game from './Game/Game'
 
 function App() {
     const theme = createTheme(Theme)
@@ -44,7 +45,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/softwaredev_section"
+                            path="services/softwaredev"
                             element={
                                 <Iframe
                                     url={
@@ -54,7 +55,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/ecommerce_section"
+                            path="services/ecommerce"
                             element={
                                 <Iframe
                                     url={
@@ -64,7 +65,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/websitedesign_section"
+                            path="services/websitedesign"
                             element={
                                 <Iframe
                                     url={
@@ -74,7 +75,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/webminigame_section"
+                            path="services/webminigame"
                             element={
                                 <Iframe
                                     url={
@@ -84,7 +85,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/virtualevent_section"
+                            path="services/virtualevent"
                             element={
                                 <Iframe
                                     url={
@@ -94,7 +95,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/onlineshowroom_section"
+                            path="services/onlineshowroom"
                             element={
                                 <Iframe
                                     url={
@@ -104,7 +105,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/3dvisualization_section"
+                            path="services/3dvisualization"
                             element={
                                 <Iframe
                                     url={
@@ -114,7 +115,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="services/metaverse_section"
+                            path="services/metaverse"
                             element={
                                 <Iframe
                                     url={
