@@ -18,7 +18,7 @@ const Nomenu = ({ url }) => {
           left: "3%",
         }}
         onClick={() => {
-          navigate(`../`);
+          navigate(`../game`);
         }}
       >
         Back
