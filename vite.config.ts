@@ -4,6 +4,9 @@ import react from "@vitejs/plugin-react";
 //vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // localhost
   // base: "/",
-  base: "/basiir/test11/",
+  // production
+  // base: "/basiir/test11/",
+  base: "/",
 });
