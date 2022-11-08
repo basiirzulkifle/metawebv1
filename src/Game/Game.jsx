@@ -30,7 +30,7 @@ import { Button } from "@mui/material";
 import { panelObjHouse } from "../dummy/dummy";
 
 import LightWall from "./LightWall";
-import ResponsiveDrawer from "../component/Drawer";
+// import ResponsiveDrawer from "../component/Drawer";
 
 const Game = () => {
   const [running, setRunning] = useState(false);
@@ -43,8 +43,16 @@ const Game = () => {
   const fov = windowSize.width > windowSize.height ? 90 : 120;
   const isMobile = windowSize.width < windowSize.height;
 
+  //StrideMode
+  const [strideMode, setStrideMode] = useState("aim");
+
+  //LockTarget
+  //const [lockTargetRotation, setlockTargetRotation] = useState(true);
+
   const movePlayer = (ev, id) => {
     setVisible({ state: true, name: id });
+    setStrideMode("free")
+    // setlockTargetRotation(false)
   };
 
   return (
@@ -53,7 +61,8 @@ const Game = () => {
         // repulsion={5}
         skybox="sky.jpg"
       >
-        {/* <Stats /> */}
+        <Stats />
+        {/* sini */}
         {/* <LingoEditor /> */}
         {/* <SceneGraph /> */}
 
@@ -111,13 +120,17 @@ const Game = () => {
           enableDamping
           y={50}
           innerY={20.0}
+          minPolarAngle={30}
+          maxPolarAngle={115}
         >
           <Dummy
             reflection
             ref={dummyRef}
+            // strideMove
+            // strideMode="free"
             strideMove
-            strideMode="free"
-            far={1}
+            strideMode={strideMode}
+            // far={1}
             id="player"
             name="player"
             physics="character"
