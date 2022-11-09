@@ -44,14 +44,14 @@ const Game = () => {
   const isMobile = windowSize.width < windowSize.height;
 
   //StrideMode
-  const [strideMode, setStrideMode] = useState("aim");
+  // const [strideMode, setStrideMode] = useState("aim");
 
   //LockTarget
   //const [lockTargetRotation, setlockTargetRotation] = useState(true);
 
   const movePlayer = (ev, id) => {
     setVisible({ state: true, name: id });
-    setStrideMode("free")
+    // setStrideMode("free")
     // setlockTargetRotation(false)
   };
 
@@ -61,7 +61,7 @@ const Game = () => {
         // repulsion={5}
         skybox="sky.jpg"
       >
-        <Stats />
+        {/* <Stats /> */}
         {/* sini */}
         {/* <LingoEditor /> */}
         {/* <SceneGraph /> */}
@@ -105,12 +105,12 @@ const Game = () => {
           x={414.07}
           y={525.17}
           z={-584.03}
-          scale={150}
+          scale={15}
           onClick={(e) => {
             !isMobile && setArrowPosition(e.point);
             !isMobile && setRunning(true);
           }}
-          src={`maps/v2/Grassland.glb`}
+          src={`maps/v2/tunnel2-v1.glb`}
         />
 
         <ThirdPersonCamera
@@ -126,10 +126,10 @@ const Game = () => {
           <Dummy
             reflection
             ref={dummyRef}
-            // strideMove
-            // strideMode="free"
             strideMove
-            strideMode={strideMode}
+            strideMode="free"
+            // strideMove
+            // strideMode={strideMode}
             // far={1}
             id="player"
             name="player"
