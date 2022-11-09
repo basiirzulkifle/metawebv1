@@ -23,16 +23,22 @@ import {
   Stats,
   Find,
   LingoEditor,
+  Environment,
 } from "lingo3d-react";
 
 import { Button } from "@mui/material";
 
-import { panelObjHouse } from "../dummy/dummy";
+// import { panelObjHouse } from "../dummy/dummy_old";
+import { panelFrame, panelObj } from "../dummy/dummy";
 
 import LightWall from "./LightWall";
 // import ResponsiveDrawer from "../component/Drawer";
 
 const Game = () => {
+  //Vite Base URl
+  const viteBaseUrl = import.meta.env.VITE_BASE_URL;
+
+  //Runinng and Idle
   const [running, setRunning] = useState(false);
   const [arrowPosition, setArrowPosition] = useState({ x: 0, y: 0, z: 0 });
   const [isVisible, setVisible] = useState({ state: false, name: "" });
@@ -63,13 +69,14 @@ const Game = () => {
       >
         {/* <Stats /> */}
         {/* sini */}
+        <Environment />
         {/* <LingoEditor /> */}
         {/* <SceneGraph /> */}
 
         <Setup pbr defaultLight={false} pixelRatio={5} />
 
-        <Cube
-          visible={false}
+        {/* <Cube
+          visible={true}
           physics="map"
           x={0}
           y={0}
@@ -80,7 +87,7 @@ const Game = () => {
           scaleZ={5.58}
           rotationX={-5.69}
           rotationZ={-179.0}
-        />
+        /> */}
         <LightWall />
 
         <Model
@@ -90,7 +97,10 @@ const Game = () => {
           bloom={true}
           scale={50}
           src={`maps/v2/ground.glb`}
-          y={-2682.75}
+          // Original
+          // y={-2682.75}
+          // Basiir
+          y={-2618.82}
           onClick={(e) => {
             setArrowPosition(e.point);
             setRunning(true);
@@ -100,18 +110,69 @@ const Game = () => {
         <Model
           name="worldmap"
           physics="map"
+          // Original
+          // width={245.36}
+          // depth={245.36}
+          // x={414.07}
+          // y={525.17}
+          // z={-584.03}
+          // scale={15}
           width={245.36}
           depth={245.36}
-          x={414.07}
-          y={525.17}
-          z={-584.03}
-          scale={15}
+          x={-149.17}
+          y={841.36}
+          z={-1113.66}
+          scale={30}
           onClick={(e) => {
             !isMobile && setArrowPosition(e.point);
             !isMobile && setRunning(true);
           }}
           src={`maps/v2/tunnel2-v1.glb`}
-        />
+        >
+          {panelObj?.map((item, idTv) => {
+            return (
+              <>
+                <Find
+                  key={idTv}
+                  name={item?.name}
+                  bloom={item?.bloom}
+                  // texture={item?.texture}
+                  // texture={`${viteBaseUrl}/${item?.texture}`}
+                  textureFlipY={item?.textureFlipY}
+                  textureRotation={item?.textureRotation}
+                  // videoTexture={`${viteBaseUrl}/${item?.videoTexture}`}
+                  // videoTexture={`${viteBaseUrl}${item?.videoTexture}`}
+                  color={item?.color}
+                  emissiveColor="#626262"
+                  emissiveIntensity={0.3}
+
+                  //Video Trigger bila click
+                  videoTexture={
+                    isVisible?.state == true && isVisible?.name == item?.name
+                      ? `${item?.videoTexture}`
+                      : null
+                  }
+                  texture={
+                    isVisible?.state == false && isVisible?.name == item?.name
+                      ? `${item?.texture}`
+                      : `${item?.texture}`
+                  }
+                  lightMapIntensity={4}
+                  lightMap={
+                    isVisible?.state == false && isVisible?.name == item?.name
+                      ? `${item?.texture}`
+                      : `${item?.texture}`
+                  }
+                  onClick={(e) => {
+                    movePlayer(e, item?.name);
+                    !isMobile && setArrowPosition(e.point);
+                    !isMobile && setRunning(true);
+                  }}
+                ></Find>
+              </>
+            );
+          })}
+        </Model>
 
         <ThirdPersonCamera
           active
@@ -134,18 +195,27 @@ const Game = () => {
             id="player"
             name="player"
             physics="character"
+            // width={50}
+            // depth={50}
+            // scale={1}
+            // x={0}
+            // y={224.6}
+            // z={0}
             width={50}
             depth={50}
             scale={1}
-            x={0}
-            y={224.6}
-            z={0}
-            lookTo={[arrowPosition.x, undefined, arrowPosition.z, 0.1]}
-            moveTo={[arrowPosition.x, undefined, arrowPosition.z, 5]}
-            onMoveToEnd={() => setRunning(false)}
+            x={-93.6}
+            y={717.65}
+            z={1325.48}
             rotationX={180}
             rotationY={-22.37}
             rotationZ={180}
+            lookTo={[arrowPosition.x, undefined, arrowPosition.z, 0.1]}
+            moveTo={[arrowPosition.x, undefined, arrowPosition.z, 5]}
+            onMoveToEnd={() => setRunning(false)}
+            // rotationX={180}
+            // rotationY={-22.37}
+            // rotationZ={180}
             src={`3dCharacter/character.glb`}
             animation={running ? "running" : "idle"}
           />
@@ -214,7 +284,7 @@ const Game = () => {
           </>
         )}
 
-        {panelObjHouse?.map((item, key) => {
+        {/* {panelObjHouse?.map((item, key) => {
           return (
             <>
               <Plane
@@ -255,7 +325,7 @@ const Game = () => {
               />
             </>
           );
-        })}
+        })} */}
       </World>
 
       {isMobile && (

@@ -68,7 +68,7 @@ const World = () => {
         color: 'black',
         display: isGame ? 'none' : "block"
       }} />
-      <ResponsiveDrawer />
+      {/* <ResponsiveDrawer /> */}
       <Game />
     </>
   );

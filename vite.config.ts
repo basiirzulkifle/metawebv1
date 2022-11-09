@@ -8,5 +8,4 @@ export default defineConfig({
   base: "/",
   // production
   // base: "/basiir/test11/",
-  // base: "/basiir/test12/",
 });

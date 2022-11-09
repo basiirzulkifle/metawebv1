@@ -18,6 +18,7 @@ import Game from './Game/Game'
 
 function App() {
     const theme = createTheme(Theme)
+    //const viteBaseUrl = import.meta.env.VITE_BASE_URL
     const viteBaseUrl = import.meta.env.VITE_BASE_URL
 
     return (
