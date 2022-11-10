@@ -7,5 +7,5 @@ export default defineConfig({
   // localhost
   base: "/",
   // production
-  // base: "/basiir/test11/",
+  // base: "/basiir/test16/",
 });
