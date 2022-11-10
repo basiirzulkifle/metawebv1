@@ -33,7 +33,7 @@ const Game = () => {
       {/* Map model; when clicked, set arrow position and running state */}
       {/* 地图模型，点击时设置箭头位置以及跑步状态 */}
       <Environment />
-      {/* <LingoEditor /> */}
+      <LingoEditor />
       <Model
         visible={true}
         physics="map"
